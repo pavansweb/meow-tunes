@@ -54,7 +54,6 @@ def upload_to_github(filename, file_path):
 
 @app.route('/')
 def index():
-    print(GITHUB_TOKEN)
     return render_template('index.html')
 
 @app.route('/search-spotify-song', methods=['POST'])
