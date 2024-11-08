@@ -5,11 +5,15 @@ import base64
 import json
 from datetime import datetime
 from dotenv import load_dotenv
+from flask_cors import CORS  # Import Flask-CORS
 
 # Load environment variables from .env file
 load_dotenv()
 
-app = Flask(__name__)  
+app = Flask(__name__)
+
+# Enable CORS
+CORS(app, resources={r"/*": {"origins": "*"}})  # Allow all origins
 
 # Load credentials and configuration from environment variables
 YOUTUBE_API_KEY = os.getenv('YOUTUBE_API_KEY')
@@ -54,6 +58,7 @@ def upload_to_github(filename, file_path):
 
 @app.route('/')
 def index():
+    print(SPOTIFY_CLIENT_ID)
     return render_template('index.html')
 
 @app.route('/search-spotify-song', methods=['POST'])
